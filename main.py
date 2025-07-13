@@ -10,6 +10,7 @@ import json
 from dotenv import load_dotenv
 
 load_dotenv()
+
 if os.getenv("GOOGLE_CREDENTIALS_B64"):
     try:
         creds_path = "credentials.json"
