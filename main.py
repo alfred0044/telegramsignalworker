@@ -4,10 +4,24 @@ import requests
 import traceback
 import time
 import os
+import base64
+import json
 
 from dotenv import load_dotenv
 
 load_dotenv()
+if os.getenv("GOOGLE_CREDENTIALS_B64"):
+    try:
+        creds_path = "credentials.json"
+        with open(creds_path, "wb") as f:
+            f.write(base64.b64decode(os.getenv("GOOGLE_CREDENTIALS_B64")))
+
+        # ✅ Add check: try loading the JSON
+        with open(creds_path, "r") as f:
+            data = json.load(f)
+            print("✅ credentials.json loaded successfully")
+    except Exception as e:
+        print("❌ Failed to decode/write credentials.json:", e)
 
 from sheet_logger import log_signal
 
