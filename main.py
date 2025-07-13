@@ -3,13 +3,18 @@ import threading
 import requests
 import traceback
 import time
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from sheet_logger import log_signal
 
 # === Configuration ===
-BOT_TOKEN = '7926604273:AAEOZwCOfKYdqboyk-CL04rBiCIhBQhy-r4'
-
-SOURCE_CHAT_ID = -1002836561743
-TARGET_CHAT_ID = -1002621280417
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+SOURCE_CHAT_ID = int(os.getenv("SOURCE_CHAT_ID", "0"))
+TARGET_CHAT_ID = int(os.getenv("TARGET_CHAT_ID", "0"))
 
 API_URL = f'https://api.telegram.org/bot{BOT_TOKEN}'
 LAST_UPDATE_ID = None
